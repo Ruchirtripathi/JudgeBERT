@@ -1,0 +1,57 @@
+{
+  "total_rows": 340,
+  "missing_fields": [],
+  "language_counts": {
+    "en": 170,
+    "hi": 170
+  },
+  "domain_counts": {
+    "contract": 202,
+    "cyber": 72,
+    "sale_of_goods": 66
+  },
+  "split_counts": {
+    "en_train": {
+      "contract": 70,
+      "cyber": 24,
+      "sale_of_goods": 23
+    },
+    "hi_train": {
+      "contract": 70,
+      "cyber": 24,
+      "sale_of_goods": 23
+    },
+    "en_validation": {
+      "contract": 15,
+      "cyber": 6,
+      "sale_of_goods": 4
+    },
+    "hi_validation": {
+      "contract": 15,
+      "cyber": 6,
+      "sale_of_goods": 4
+    },
+    "en_test": {
+      "contract": 16,
+      "cyber": 6,
+      "sale_of_goods": 6
+    },
+    "hi_test": {
+      "contract": 16,
+      "cyber": 6,
+      "sale_of_goods": 6
+    }
+  },
+  "duplicate_pair_ids": [],
+  "duplicate_original_texts": [
+    "This section shall not be deemed to render unlawful a subscription or contribution, or agreement to subscribe or contribute, made or entered into for or toward any plate, prize or sum of money, of the value or amount of five hundred rupees or upwards, to be awarded to the winner or winners of any horse-race.",
+    "यह धारा किसी घुड़दौड़ के विजेता या विजेताओं को देने के लिए पाँच सौ रुपये या उससे अधिक मूल्य या राशि की किसी प्लेट, पुरस्कार या धनराशि के लिए या उसकी ओर की गई या किए जाने वाले अंशदान या योगदान की संविदा को अविधिमान्य नहीं मानेगी।",
+    "A contract of guarantee is a contract to perform the promise, or discharge the liability, of a third person in case of his default. A guarantee may be either oral or written.",
+    "प्रतिभूति की संविदा वह संविदा है जिसमें किसी तीसरे व्यक्ति के चूक करने पर उसके वचन का पालन करने या उसके दायित्व का निर्वहन करने का वचन दिया जाता है। प्रतिभूति मौखिक या लिखित हो सकती है।",
+    "The parties to a contract must either perform, or offer to perform, their respective promises, unless such performance is dispensed with or excused under the provisions of this Act, or of any other law."
+  ],
+  "duplicate_simplified_texts": [],
+  "source_groups_spanning_splits": {},
+  "verbatim_quote_mismatches": [],
+  "identical_original_simplified": []
+}

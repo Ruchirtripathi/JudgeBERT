@@ -1,0 +1,341 @@
+pair_id,language,legal_domain,source_group,source_section,simplification_type,draft_lmp_score,draft_error_type,verbatim_quote,curator_notes
+ENG_CON_076,en,contract,ICA1872::1,1,scope_narrowing,7,Scope,true,"Drops the 'five hundred rupees or upwards' threshold from the horse-racing exception. The exception is widened to prizes of any value, which is precisely the line the statute draws."
+ENG_CON_101,en,contract,ICA1872::1,1,hallucination,3,Number,true,"The statutory monetary threshold is silently doubled from five hundred to one thousand rupees. Written as a deliberate Number-error probe for Experiment 5; shares source_group ICA1872::1 with the scope_narrowing variant ENG_CON_076, so the pair also exercises the anti-leakage grouping."
+HIN_CON_076,hi,contract,ICA1872::1,1,scope_narrowing,7,Scope,false,Hindi counterpart; 'पाँच सौ रुपये या उससे अधिक' threshold dropped.
+HIN_CON_101,hi,contract,ICA1872::1,1,hallucination,3,Number,false,Hindi counterpart; 'पाँच सौ रुपये' को 'एक हज़ार रुपये' कर दिया गया।
+ENG_CON_006,en,contract,ICA1872::10,10,quantifier_weakening,3,Scope,true,All -> Some. Universal rule becomes existential; the section no longer states a general principle of contract formation.
+ENG_CON_049,en,contract,ICA1872::10,10,faithful_paraphrase,9,None,true,Second simplification of s.10 in the same source group. Tests the anti-leakage grouping: both must land in one split.
+HIN_CON_006,hi,contract,ICA1872::10,10,quantifier_weakening,3,Scope,false,सभी -> कुछ. Mirrors the universal-to-existential weakening.
+HIN_CON_049,hi,contract,ICA1872::10,10,faithful_paraphrase,9,None,false,Hindi counterpart of the second s.10 simplification.
+ENG_CON_007,en,contract,ICA1872::11,11,omission,4,Omission,true,Drops both the soundness-of-mind requirement and the disqualification limb. Two of three cumulative conditions are lost.
+HIN_CON_007,hi,contract,ICA1872::11,11,omission,4,Omission,false,Hindi counterpart; स्वस्थ चित्त and अयोग्यता limbs both removed.
+ENG_CON_052,en,contract,ICA1872::12,12,scope_narrowing,6,Scope,true,"Drops the converse rule. The simplification leaves a reader believing capacity is only ever recognised in one direction, while the omitted sentence is what voids a contract made during a lucid interval's opposite."
+HIN_CON_052,hi,contract,ICA1872::12,12,scope_narrowing,6,Scope,false,Hindi counterpart; विपरीत नियम dropped.
+ENG_CON_040,en,contract,ICA1872::126,126,faithful_paraphrase,9,None,true,Both the definition and the oral/written rule are preserved.
+ENG_CON_100,en,contract,ICA1872::126,126,omission,5,Omission,true,"Second simplification of s.126 in this source group, paired with ENG_CON_040 which is faithful. Here the oral/written rule is dropped. A student reader would reasonably assume guarantees must be written, which the Act expressly denies."
+HIN_CON_040,hi,contract,ICA1872::126,126,faithful_paraphrase,9,None,false,Hindi counterpart.
+HIN_CON_100,hi,contract,ICA1872::126,126,omission,5,Omission,false,Hindi counterpart; मौखिक/लिखित नियम dropped.
+ENG_CON_041,en,contract,ICA1872::127,127,scope_narrowing,6,Scope,true,"Drops 'or any promise made'. Excludes executory consideration from the scope of the section, which matters where the benefit is a promise rather than an act."
+HIN_CON_041,hi,contract,ICA1872::127,127,scope_narrowing,6,Scope,false,Hindi counterpart; 'अथवा दिया गया कोई भी वचन' removed.
+ENG_CON_042,en,contract,ICA1872::128,128,exception_drop,4,Exception,true,"Removes the contractual opt-out. Parties lose the ability, expressly preserved by the section, to agree a different liability."
+HIN_CON_042,hi,contract,ICA1872::128,128,exception_drop,4,Exception,false,Hindi counterpart; 'जब तक कि संविदा द्वारा अन्यथा उपबंधित न हो' removed.
+ENG_CON_043,en,contract,ICA1872::129,129,faithful_paraphrase,10,None,true,Definitional sentence; no legal content is at risk from rewording.
+HIN_CON_043,hi,contract,ICA1872::129,129,faithful_paraphrase,10,None,false,Hindi counterpart.
+ENG_CON_008,en,contract,ICA1872::13,13,scope_narrowing,5,Scope,true,Drops 'in the same sense'. Consensus ad idem is the whole point of s.13; without it the definition collapses to bare agreement on subject matter.
+HIN_CON_008,hi,contract,ICA1872::13,13,scope_narrowing,5,Scope,false,Hindi counterpart; 'एक ही अर्थ में' removed.
+ENG_CON_044,en,contract,ICA1872::137,137,exception_drop,5,Exception,true,Drops the guarantee-provision qualifier and the 'or to enforce any other remedy' limb.
+HIN_CON_044,hi,contract,ICA1872::137,137,exception_drop,5,Exception,false,Hindi counterpart; qualifier and second limb removed.
+ENG_CON_045,en,contract,ICA1872::139,139,condition_drop,4,Condition,true,"Drops two of three cumulative requirements: the creditor's omission of a duty, and the impairment of the surety's eventual remedy."
+HIN_CON_045,hi,contract,ICA1872::139,139,condition_drop,4,Condition,false,Hindi counterpart; two cumulative conditions dropped.
+ENG_CON_009,en,contract,ICA1872::14,14,omission,5,Omission,true,"Three of the five vitiating factors are dropped; undue influence, misrepresentation and mistake disappear from the list."
+HIN_CON_009,hi,contract,ICA1872::14,14,omission,5,Omission,false,"Hindi counterpart; असम्यक प्रभाव, मिथ्याकथन and भूल removed."
+ENG_CON_046,en,contract,ICA1872::142,142,scope_narrowing,6,Scope,true,"Narrows 'made by, or with his knowledge and assent' to the creditor's own act, and drops the materiality requirement."
+HIN_CON_046,hi,contract,ICA1872::142,142,scope_narrowing,6,Scope,false,Hindi counterpart; जानकारी/सहमति and सारभूत भाग requirements dropped.
+ENG_CON_047,en,contract,ICA1872::143,143,hallucination,2,Hallucination,true,"invalid -> voidable, and the election is attributed to the creditor, who is the party at fault. Both the consequence and the beneficiary are invented."
+HIN_CON_047,hi,contract,ICA1872::143,143,hallucination,2,Hallucination,false,Hindi counterpart; अविधिमान्य -> शून्यकरणीय with the wrong party holding the option.
+ENG_CON_057,en,contract,ICA1872::144,144,faithful_paraphrase,8,None,true,Conditional validity preserved; no element dropped.
+HIN_CON_057,hi,contract,ICA1872::144,144,faithful_paraphrase,8,None,false,Hindi counterpart.
+ENG_CON_048,en,contract,ICA1872::146,146,condition_drop,5,Condition,true,"Drops every qualifying condition, including the 'absence of any contract to the contrary' which lets co-sureties agree a different split."
+HIN_CON_048,hi,contract,ICA1872::146,146,condition_drop,5,Condition,false,Hindi counterpart; all qualifications including विपरीत संविदा dropped.
+ENG_CON_058,en,contract,ICA1872::149,149,faithful_paraphrase,9,None,true,Both alternative recipients preserved.
+HIN_CON_058,hi,contract,ICA1872::149,149,faithful_paraphrase,9,None,false,Hindi counterpart.
+ENG_CON_077,en,contract,ICA1872::15,15,faithful_paraphrase,9,None,true,Both limbs and the intention requirement preserved. Footnote reference marker after 'Penal Code' dropped from the quoted span.
+HIN_CON_077,hi,contract,ICA1872::15,15,faithful_paraphrase,9,None,false,Hindi counterpart.
+ENG_CON_059,en,contract,ICA1872::153,153,faithful_paraphrase,9,None,true,"Who holds the option, and on what trigger, both survive."
+HIN_CON_059,hi,contract,ICA1872::153,153,faithful_paraphrase,9,None,false,Hindi counterpart.
+ENG_CON_060,en,contract,ICA1872::154,154,faithful_paraphrase,8,None,true,Causation requirement ('from or during such use') preserved.
+HIN_CON_060,hi,contract,ICA1872::154,154,faithful_paraphrase,8,None,false,Hindi counterpart.
+ENG_CON_061,en,contract,ICA1872::155,155,faithful_paraphrase,9,None,true,Consent condition and proportionate-interest rule both retained.
+HIN_CON_061,hi,contract,ICA1872::155,155,faithful_paraphrase,9,None,false,Hindi counterpart.
+ENG_CON_062,en,contract,ICA1872::157,157,faithful_paraphrase,8,None,true,The absence of consent and the impossibility of separation are both preserved; together they are what triggers the compensation right.
+HIN_CON_062,hi,contract,ICA1872::157,157,faithful_paraphrase,8,None,false,Hindi counterpart.
+ENG_CON_063,en,contract,ICA1872::158,158,condition_drop,4,Condition,true,"Drops 'and the bailee is to receive no remuneration'. That condition is the whole reason the section exists: a paid bailee cannot claim expenses, and the simplification silently grants the right to both."
+HIN_CON_063,hi,contract,ICA1872::158,158,condition_drop,4,Condition,false,Hindi counterpart; 'और न्यासधारी को कोई पारिश्रमिक नहीं मिलना है' condition dropped.
+ENG_CON_064,en,contract,ICA1872::159,159,omission,4,Omission,true,"Drops the borrower's indemnity proviso. The simplification states the lender's right but conceals its price, which is the operative half of the section for a borrower who has relied on the loan."
+HIN_CON_064,hi,contract,ICA1872::159,159,omission,4,Omission,false,Hindi counterpart; उधारकर्ता की क्षतिपूर्ति proviso dropped.
+ENG_CON_065,en,contract,ICA1872::162,162,faithful_paraphrase,10,None,true,Short definitional rule; both triggering deaths preserved.
+HIN_CON_065,hi,contract,ICA1872::162,162,faithful_paraphrase,10,None,false,Hindi counterpart.
+ENG_CON_066,en,contract,ICA1872::163,163,exception_drop,5,Exception,true,Drops 'In the absence of any contract to the contrary'. Parties lose the freedom the section expressly preserves to agree otherwise.
+HIN_CON_066,hi,contract,ICA1872::163,163,exception_drop,5,Exception,false,Hindi counterpart; 'विपरीत संविदा के अभाव में' dropped.
+ENG_CON_079,en,contract,ICA1872::164,164,faithful_paraphrase,9,None,true,All three grounds of the bailor's want of title are preserved.
+HIN_CON_079,hi,contract,ICA1872::164,164,faithful_paraphrase,9,None,false,Hindi counterpart.
+ENG_CON_010,en,contract,ICA1872::17,17,exception_drop,3,Exception,true,"Deletes the 'unless' limb, converting a rule-with-exception into an absolute rule. A reader would conclude silence can never be fraud."
+HIN_CON_010,hi,contract,ICA1872::17,17,exception_drop,3,Exception,false,Hindi counterpart; the 'जब तक कि' exception is removed.
+ENG_CON_080,en,contract,ICA1872::170,170,exception_drop,5,Exception,true,"Drops 'in the absence of a contract to the contrary'. The lien becomes non-derogable, though the Act expressly allows parties to exclude it."
+HIN_CON_080,hi,contract,ICA1872::170,170,exception_drop,5,Exception,false,Hindi counterpart; 'विपरीत संविदा के अभाव में' dropped.
+ENG_CON_067,en,contract,ICA1872::175,175,faithful_paraphrase,9,None,true,'Extraordinary' and the preservation purpose both retained.
+HIN_CON_067,hi,contract,ICA1872::175,175,faithful_paraphrase,9,None,false,Hindi counterpart.
+ENG_CON_068,en,contract,ICA1872::176,176,omission,4,Omission,true,Drops both proceeds rules. Without them a reader cannot tell who bears a shortfall or keeps a surplus — the two questions this section exists to answer.
+HIN_CON_068,hi,contract,ICA1872::176,176,omission,4,Omission,false,Hindi counterpart; दोनों आय-नियम dropped.
+ENG_CON_081,en,contract,ICA1872::177,177,omission,4,Omission,true,Drops the expenses condition attached to late redemption. The right of redemption is stated as free of charge when the section makes it conditional.
+HIN_CON_081,hi,contract,ICA1872::177,177,omission,4,Omission,false,Hindi counterpart; व्यय की शर्त dropped.
+ENG_CON_069,en,contract,ICA1872::179,179,faithful_paraphrase,9,None,true,The limitation on validity is preserved.
+HIN_CON_069,hi,contract,ICA1872::179,179,faithful_paraphrase,9,None,false,Hindi counterpart.
+ENG_CON_011,en,contract,ICA1872::18,18,faithful_paraphrase,8,None,true,Innocent-belief qualifier preserved. Slight loss of the formal 'positive assertion' term of art.
+HIN_CON_011,hi,contract,ICA1872::18,18,faithful_paraphrase,8,None,false,Hindi counterpart; good-faith qualifier retained.
+ENG_CON_082,en,contract,ICA1872::181,181,faithful_paraphrase,9,None,true,Apportionment rule preserved.
+HIN_CON_082,hi,contract,ICA1872::181,181,faithful_paraphrase,9,None,false,Hindi counterpart.
+ENG_CON_070,en,contract,ICA1872::183,183,faithful_paraphrase,9,None,true,Both capacity requirements preserved.
+HIN_CON_070,hi,contract,ICA1872::183,183,faithful_paraphrase,9,None,false,Hindi counterpart.
+ENG_CON_071,en,contract,ICA1872::184,184,scope_narrowing,6,Scope,true,Drops 'As between the principal and third persons' and 'so as to be responsible to his principal'. The section distinguishes capacity to act as agent from liability to the principal; the simplification erases that distinction.
+HIN_CON_071,hi,contract,ICA1872::184,184,scope_narrowing,6,Scope,false,Hindi counterpart; सीमित संदर्भ और मुख्य के प्रति उत्तरदायित्व dropped.
+ENG_CON_072,en,contract,ICA1872::187,187,faithful_paraphrase,8,None,true,Both definitions and the list of what may constitute circumstances are preserved.
+HIN_CON_072,hi,contract,ICA1872::187,187,faithful_paraphrase,8,None,false,Hindi counterpart.
+ENG_CON_083,en,contract,ICA1872::188,188,faithful_paraphrase,8,None,true,"Both limbs — the single-act rule and the business rule — preserved, including the 'usually done in the course' extension."
+HIN_CON_083,hi,contract,ICA1872::188,188,faithful_paraphrase,8,None,false,Hindi counterpart.
+ENG_CON_053,en,contract,ICA1872::19,19,omission,5,Omission,true,'coercion' removed from the list of vitiating factors. A reader applying only this sentence would conclude that an agreement procured by coercion is not voidable. Footnote marker '1***' in the source PDF dropped.
+HIN_CON_053,hi,contract,ICA1872::19,19,omission,5,Omission,false,Hindi counterpart; 'उपद्रव' removed.
+ENG_CON_084,en,contract,ICA1872::190,190,exception_drop,5,Exception,true,"Drops both exceptions — ordinary custom of trade, and the nature of the agency. The prohibition is stated absolutely, so a lawful sub-agency under trade custom reads as a breach."
+HIN_CON_084,hi,contract,ICA1872::190,190,exception_drop,5,Exception,false,Hindi counterpart; दोनों अपवाद dropped.
+ENG_CON_085,en,contract,ICA1872::192,192,omission,5,Omission,true,Drops the appointing agent's own responsibility to the principal for the sub-agent's acts. A reader of the simplification would think the principal's only recourse is against the sub-agent.
+HIN_CON_085,hi,contract,ICA1872::192,192,omission,5,Omission,false,Hindi counterpart; अभिकर्ता का उत्तरदायित्व dropped.
+ENG_CON_086,en,contract,ICA1872::193,193,condition_drop,4,Condition,true,Drops the express exoneration of the principal. Removing a negative rule is especially dangerous: the simplification is silent on the point where the section is emphatic.
+HIN_CON_086,hi,contract,ICA1872::193,193,condition_drop,4,Condition,false,Hindi counterpart; मुख्य का निर्दोषीकरण dropped.
+ENG_CON_087,en,contract,ICA1872::194,194,faithful_paraphrase,8,None,true,"The key legal distinction (not a sub-agent, but the principal's own agent) is preserved."
+HIN_CON_087,hi,contract,ICA1872::194,194,faithful_paraphrase,8,None,false,Hindi counterpart.
+ENG_CON_088,en,contract,ICA1872::195,195,scope_narrowing,7,Scope,true,"Replaces the benchmark 'the same amount of discretion as a man of ordinary prudence would exercise in his own case' with an unanchored 'reasonable discretion'. The immunity in the second limb depends on the benchmark, so loosening it loosens the immunity."
+HIN_CON_088,hi,contract,ICA1872::195,195,scope_narrowing,7,Scope,false,Hindi counterpart; मानक 'साधारण विवेकशील व्यक्ति' से 'उचित विवेकशीलता' कर दिया गया।
+ENG_CON_089,en,contract,ICA1872::196,196,faithful_paraphrase,9,None,true,The election and the retrospective effect of ratification are both preserved.
+HIN_CON_089,hi,contract,ICA1872::196,196,faithful_paraphrase,9,None,false,Hindi counterpart.
+ENG_CON_073,en,contract,ICA1872::201,201,omission,4,Omission,true,"Drops two of the five termination grounds: death or unsoundness of mind, and the principal's insolvency. The list is presented as complete, so a reader would not know an agency can end by operation of law on death alone."
+HIN_CON_073,hi,contract,ICA1872::201,201,omission,4,Omission,false,Hindi counterpart; मृत्यु/अस्वस्थचित्तता और दिवालियापन grounds dropped.
+ENG_CON_090,en,contract,ICA1872::206,206,modal_weakening,7,Obligation/Permission,true,"must -> should in the first limb only. The damages consequence in the second limb is retained, so the simplification is internally inconsistent: it makes notice advisory while keeping the penalty for failing to give it."
+HIN_CON_090,hi,contract,ICA1872::206,206,modal_weakening,7,Obligation/Permission,false,Hindi counterpart; 'होगी' -> 'चाहिए'.
+ENG_CON_012,en,contract,ICA1872::21,21,negation_flip,2,Contradiction,true,Direct negation flip. The simplification states the exact opposite of the statutory rule on mistake of Indian law.
+HIN_CON_012,hi,contract,ICA1872::21,21,negation_flip,2,Contradiction,false,Hindi counterpart of the negation flip (नहीं होती -> होती है).
+ENG_CON_091,en,contract,ICA1872::210,210,faithful_paraphrase,8,None,true,The derivative nature of sub-agency authority is preserved.
+HIN_CON_091,hi,contract,ICA1872::210,210,faithful_paraphrase,8,None,false,Hindi counterpart.
+ENG_CON_092,en,contract,ICA1872::211,211,condition_drop,5,Condition,true,"Drops the custom-of-the-place fallback. Where the principal gives no directions, the simplification supplies no standard at all, yet still holds the agent liable for departing from it."
+HIN_CON_092,hi,contract,ICA1872::211,211,condition_drop,5,Condition,false,Hindi counterpart; रूढ़ि-आधारित विकल्प dropped.
+ENG_CON_093,en,contract,ICA1872::218,218,faithful_paraphrase,8,None,true,The 'subject to such deductions' qualification is preserved as 'after allowable deductions'.
+HIN_CON_093,hi,contract,ICA1872::218,218,faithful_paraphrase,8,None,false,Hindi counterpart.
+ENG_CON_094,en,contract,ICA1872::219,219,omission,5,Omission,true,"Drops the detention proviso. That proviso is the exception to the very rule the simplification keeps, so removing it turns a rule-with-exception into a flat rule."
+HIN_CON_094,hi,contract,ICA1872::219,219,omission,5,Omission,false,Hindi counterpart; धारण-अपवाद dropped.
+ENG_CON_013,en,contract,ICA1872::22,22,faithful_paraphrase,9,None,true,'merely' correctly rendered as 'only'; scope of the protection preserved.
+HIN_CON_013,hi,contract,ICA1872::22,22,faithful_paraphrase,9,None,false,"Hindi counterpart; 'केवल' preserved, which is the operative qualifier."
+ENG_CON_095,en,contract,ICA1872::221,221,exception_drop,5,Exception,true,"Drops the contractual opt-out. As with s.170, the lien is contracted out of in practice, so removing the opt-out is the more consequential edit."
+HIN_CON_095,hi,contract,ICA1872::221,221,exception_drop,5,Exception,false,Hindi counterpart; 'विपरीत संविदा के अभाव में' dropped.
+ENG_CON_096,en,contract,ICA1872::222,222,scope_narrowing,7,Scope,true,"Drops 'in exercise of the authority conferred upon him'. The indemnity is extended to lawful acts outside the agent's authority, which the section does not cover."
+HIN_CON_096,hi,contract,ICA1872::222,222,scope_narrowing,7,Scope,false,Hindi counterpart; 'प्राधिकार के प्रयोग में' dropped.
+ENG_CON_074,en,contract,ICA1872::226,226,faithful_paraphrase,9,None,true,"The equivalence to personal acts, which is the whole content of the section, is preserved."
+HIN_CON_074,hi,contract,ICA1872::226,226,faithful_paraphrase,9,None,false,Hindi counterpart.
+ENG_CON_097,en,contract,ICA1872::227,227,condition_drop,4,Condition,true,Drops the separability requirement. That condition is what limits the rule; without it the simplification states a severability the section only grants where the parts can actually be divided.
+HIN_CON_097,hi,contract,ICA1872::227,227,condition_drop,4,Condition,false,Hindi counterpart; पृथक्करण की शर्त dropped.
+ENG_CON_054,en,contract,ICA1872::23,23,omission,5,Omission,true,"Drops the public-policy and immorality ground. That ground is the residual head under which most modern illegality challenges are brought, so its removal is materially misleading rather than merely incomplete."
+HIN_CON_054,hi,contract,ICA1872::23,23,omission,5,Omission,false,Hindi counterpart; अनैतिक/लोकनीति ground removed.
+ENG_CON_098,en,contract,ICA1872::232,232,scope_narrowing,7,Scope,true,Narrows 'neither knowing nor having reasonable ground to suspect' to actual knowledge only. A counterparty who ought to have suspected agency loses the protection.
+HIN_CON_098,hi,contract,ICA1872::232,232,scope_narrowing,7,Scope,false,Hindi counterpart; 'संदेह करने का उचित आधार' dropped.
+ENG_CON_099,en,contract,ICA1872::235,235,faithful_paraphrase,8,None,true,The condition precedent (non-ratification by the alleged employer) is preserved.
+HIN_CON_099,hi,contract,ICA1872::235,235,faithful_paraphrase,8,None,false,Hindi counterpart.
+ENG_CON_075,en,contract,ICA1872::238,238,condition_drop,4,Condition,true,Drops the limiting clause 'but ... in matters which do not fall within their authority ... do not affect their principals'. The simplification imposes unlimited principal liability for an agent's fraud.
+HIN_CON_075,hi,contract,ICA1872::238,238,condition_drop,4,Condition,false,Hindi counterpart; सीमित करने वाला खंड dropped.
+ENG_CON_014,en,contract,ICA1872::26,26,exception_drop,4,Exception,true,Removes 'other than a minor'. The exception for minors is legally significant and its loss changes the rule's scope.
+HIN_CON_014,hi,contract,ICA1872::26,26,exception_drop,4,Exception,false,Hindi counterpart; 'नाबालिग के सिवाय' removed.
+ENG_CON_015,en,contract,ICA1872::27,27,scope_narrowing,5,Scope,true,"Narrows 'profession, trade or business' to 'trade' only. Also drops the pro tanto qualifier 'to that extent'."
+HIN_CON_015,hi,contract,ICA1872::27,27,scope_narrowing,5,Scope,false,"Hindi counterpart; 'पेशा' and 'कारोबार' dropped, 'उस सीमा तक' dropped."
+ENG_CON_016,en,contract,ICA1872::29,29,faithful_paraphrase,9,None,true,Disjunctive 'or' preserved; both limbs survive.
+HIN_CON_016,hi,contract,ICA1872::29,29,faithful_paraphrase,9,None,false,Hindi counterpart; both limbs retained.
+ENG_CON_017,en,contract,ICA1872::30,30,omission,5,Omission,true,Drops the procedural bar on suits. The substantive rule survives but the enforcement consequence is lost.
+HIN_CON_017,hi,contract,ICA1872::30,30,omission,5,Omission,false,Hindi counterpart; the वाद prohibition is dropped.
+ENG_CON_018,en,contract,ICA1872::31,31,faithful_paraphrase,8,None,true,Both the collateral-event requirement and the does/does-not polarity are preserved.
+HIN_CON_018,hi,contract,ICA1872::31,31,faithful_paraphrase,8,None,false,Hindi counterpart; सहायक (collateral) and both polarities preserved.
+ENG_CON_019,en,contract,ICA1872::32,32,condition_drop,4,Condition,true,"Removes the 'unless and until' limb, so the simplification states an absolute bar rather than a suspension until the event occurs."
+HIN_CON_019,hi,contract,ICA1872::32,32,condition_drop,4,Condition,false,Hindi counterpart; 'जब तक कि' limb removed.
+ENG_CON_055,en,contract,ICA1872::33,33,faithful_paraphrase,8,None,true,"The temporal trigger ('when ... becomes impossible, and not before') survives intact."
+HIN_CON_055,hi,contract,ICA1872::33,33,faithful_paraphrase,8,None,false,Hindi counterpart; temporal trigger retained.
+ENG_CON_020,en,contract,ICA1872::36,36,condition_drop,6,Condition,true,"Drops the knowledge qualifier. The core rule survives, but the express irrelevance of the parties' state of mind is lost."
+HIN_CON_020,hi,contract,ICA1872::36,36,condition_drop,6,Condition,false,Hindi counterpart; the ज्ञान qualifier is dropped.
+ENG_CON_021,en,contract,ICA1872::37,37,exception_drop,3,Exception,true,Removes the 'unless' excusal limb. Turns a defeasible obligation into an absolute one; excuses recognised by law vanish from the statement.
+ENG_CON_050,en,contract,ICA1872::37,37,modal_weakening,6,Obligation/Permission,true,"must -> should. Same source group as ENG_CON_021, which drops the exception instead; the pair of edits isolates the modal from the exception."
+HIN_CON_021,hi,contract,ICA1872::37,37,exception_drop,3,Exception,false,Hindi counterpart; 'जब तक कि' excusal limb removed.
+HIN_CON_050,hi,contract,ICA1872::37,37,modal_weakening,6,Obligation/Permission,false,Hindi counterpart; 'करना होगा' -> 'करना चाहिए'.
+ENG_CON_022,en,contract,ICA1872::38,38,faithful_paraphrase,9,None,true,"Both consequences (no liability, no loss of rights) preserved."
+HIN_CON_022,hi,contract,ICA1872::38,38,faithful_paraphrase,9,None,false,Hindi counterpart; both consequences retained.
+ENG_CON_056,en,contract,ICA1872::39,39,exception_drop,4,Exception,true,Drops the acquiescence exception. The simplification converts an optional right that can be lost by conduct into an unconditional one.
+HIN_CON_056,hi,contract,ICA1872::39,39,exception_drop,4,Exception,false,Hindi counterpart; सम्मति अपवाद dropped.
+ENG_CON_001,en,contract,ICA1872::4,4,faithful_paraphrase,9,None,true,Register change only; the trigger event (knowledge of the offeree) is preserved.
+HIN_CON_001,hi,contract,ICA1872::4,4,faithful_paraphrase,9,None,false,Author-rendered Hindi of s.4. Trigger event (ज्ञान/जानकारी) preserved.
+ENG_CON_023,en,contract,ICA1872::41,41,negation_flip,1,Contradiction,true,cannot -> may. Reverses the rule entirely. Minimal surface edit with maximal legal effect; ideal adversarial case.
+HIN_CON_023,hi,contract,ICA1872::41,41,negation_flip,1,Contradiction,false,Hindi counterpart; 'नहीं कर सकता' -> 'कर सकता'.
+ENG_CON_026,en,contract,ICA1872::42,42,faithful_paraphrase,8,None,true,Reorders the 'unless' clause but preserves it. Live/dead representative detail deliberately excluded from the original span.
+HIN_CON_026,hi,contract,ICA1872::42,42,faithful_paraphrase,8,None,false,Hindi counterpart; विपरीत आशय qualifier retained.
+ENG_CON_027,en,contract,ICA1872::45,45,faithful_paraphrase,8,None,true,Devolution rule preserved for both stages.
+HIN_CON_027,hi,contract,ICA1872::45,45,faithful_paraphrase,8,None,false,Hindi counterpart.
+ENG_CON_028,en,contract,ICA1872::48,48,omission,5,Omission,true,"Drops the precondition ('promisor has not undertaken to perform without application') and both qualifiers (proper place, usual business hours). Duty becomes unconditional and unspecified."
+HIN_CON_028,hi,contract,ICA1872::48,48,omission,5,Omission,false,Hindi counterpart; precondition and qualifiers removed.
+ENG_CON_002,en,contract,ICA1872::5,5,condition_drop,2,Condition,true,Removes the temporal limitation 'but not afterwards'. This reverses the legal position: revocation after acceptance is not permitted. Candidate adversarial edit.
+HIN_CON_002,hi,contract,ICA1872::5,5,condition_drop,2,Condition,false,Hindi counterpart of the temporal-condition deletion.
+ENG_CON_029,en,contract,ICA1872::50,50,modal_strengthening,3,Obligation/Permission,true,"may -> must. A liberty of the promisor is converted into a binding requirement. Also drops 'or sanctions', narrowing the modes the promisee may accept."
+HIN_CON_029,hi,contract,ICA1872::50,50,modal_strengthening,3,Obligation/Permission,false,Hindi counterpart; 'किया जा सकता है' -> 'किया जाना चाहिए'.
+ENG_CON_030,en,contract,ICA1872::53,53,omission,5,Omission,true,Drops the compensation entitlement. The remedy of rescission survives but the damages claim does not.
+HIN_CON_030,hi,contract,ICA1872::53,53,omission,5,Omission,false,Hindi counterpart; क्षतिपूर्ति entitlement dropped.
+ENG_CON_024,en,contract,ICA1872::55,55,condition_drop,4,Condition,true,"Drops 'time is of the essence'. Collapses the two-regime structure of s.55 into one, and the context field records what was lost."
+HIN_CON_024,hi,contract,ICA1872::55,55,condition_drop,4,Condition,false,Hindi counterpart; 'समय सारभूत' condition dropped.
+ENG_CON_025,en,contract,ICA1872::56,56,hallucination,2,Hallucination,true,void -> voidable at the promisor's option. Introduces a party-election remedy that does not exist in the section; a plausible-sounding but invented legal consequence.
+HIN_CON_025,hi,contract,ICA1872::56,56,hallucination,2,Hallucination,false,"Hindi counterpart; शून्य -> शून्यकरणीय, an invented remedy."
+ENG_CON_031,en,contract,ICA1872::58,58,contradiction,1,Contradiction,true,'the legal branch alone' -> 'neither branch'. Severability of the lawful limb is reversed; the simplification makes the whole promise unenforceable.
+HIN_CON_031,hi,contract,ICA1872::58,58,contradiction,1,Contradiction,false,Hindi counterpart; 'केवल विधिपूर्ण शाखा' -> 'कोई भी शाखा नहीं'.
+ENG_CON_003,en,contract,ICA1872::6,6,condition_drop,5,Condition,true,Drops the fallback rule for proposals with no prescribed time. Silently narrows the section to only one of its two cases.
+HIN_CON_003,hi,contract,ICA1872::6,6,condition_drop,5,Condition,false,Hindi counterpart; the 'उचित समय' fallback limb is lost.
+ENG_CON_032,en,contract,ICA1872::60,60,scope_narrowing,5,Scope,true,"Drops three limiting elements: the absence of other circumstances, the discretion qualifier, and the express irrelevance of the limitation bar."
+HIN_CON_032,hi,contract,ICA1872::60,60,scope_narrowing,5,Scope,false,Hindi counterpart; qualifying elements dropped.
+ENG_CON_033,en,contract,ICA1872::61,61,condition_drop,6,Condition,true,Drops the equal-standing rule and the limitation-bar clarification. For debts of equal standing the simplification silently prescribes no rule at all.
+HIN_CON_033,hi,contract,ICA1872::61,61,condition_drop,6,Condition,false,Hindi counterpart; समान स्थिति rule dropped.
+ENG_CON_034,en,contract,ICA1872::62,62,faithful_paraphrase,9,None,true,"All three triggering events (substitute, rescind, alter) are retained."
+HIN_CON_034,hi,contract,ICA1872::62,62,faithful_paraphrase,9,None,false,Hindi counterpart; all three triggers retained.
+ENG_CON_035,en,contract,ICA1872::63,63,omission,5,Omission,true,Two of the three options are lost: extending time and accepting substituted satisfaction. The promisee's powers are materially reduced.
+HIN_CON_035,hi,contract,ICA1872::63,63,omission,5,Omission,false,Hindi counterpart; समय विस्तार and संतोष options dropped.
+ENG_CON_036,en,contract,ICA1872::64,64,omission,4,Omission,true,"Drops the restitution obligation entirely. The simplification grants rescission while concealing the price of it, which is the legally decisive half of the section."
+HIN_CON_036,hi,contract,ICA1872::64,64,omission,4,Omission,false,Hindi counterpart; लाभ प्रत्यर्पण obligation dropped.
+ENG_CON_037,en,contract,ICA1872::66,66,faithful_paraphrase,9,None,true,Cross-reference to proposal rules preserved intact.
+HIN_CON_037,hi,contract,ICA1872::66,66,faithful_paraphrase,9,None,false,Hindi counterpart.
+ENG_CON_038,en,contract,ICA1872::67,67,faithful_paraphrase,8,None,true,Causal link ('caused thereby') preserved. 'neglects or' is elided but the operative excuse survives.
+HIN_CON_038,hi,contract,ICA1872::67,67,faithful_paraphrase,8,None,false,Hindi counterpart; causal link retained.
+ENG_CON_078,en,contract,ICA1872::68,68,faithful_paraphrase,8,None,true,Both classes of beneficiary and the reimbursement source (the incapable person's property) preserved.
+HIN_CON_078,hi,contract,ICA1872::68,68,faithful_paraphrase,8,None,false,Hindi counterpart.
+ENG_CON_004,en,contract,ICA1872::7,7,modal_weakening,6,Obligation/Permission,true,must -> should. Prescriptive requirement becomes advisory; a legally meaningful deontic weakening.
+HIN_CON_004,hi,contract,ICA1872::7,7,modal_weakening,6,Obligation/Permission,false,आवश्यक है -> उचित है. Mirrors the English must -> should weakening.
+ENG_CON_039,en,contract,ICA1872::74,74,omission,3,Omission,true,"Drops 'reasonable compensation not exceeding'. Converts a ceiling on damages into an entitlement to the full stipulated sum, which is the opposite of the section's purpose."
+HIN_CON_039,hi,contract,ICA1872::74,74,omission,3,Omission,false,Hindi counterpart; 'उचित क्षतिपूर्ति' ceiling removed.
+ENG_CON_051,en,contract,ICA1872::8,8,faithful_paraphrase,9,None,true,Both alternative modes of acceptance preserved.
+HIN_CON_051,hi,contract,ICA1872::8,8,faithful_paraphrase,9,None,false,Hindi counterpart.
+ENG_CON_005,en,contract,ICA1872::9,9,faithful_paraphrase,9,None,true,Removes archaic 'in so far as' framing without changing the express/implied distinction.
+HIN_CON_005,hi,contract,ICA1872::9,9,faithful_paraphrase,9,None,false,Hindi counterpart.
+ENG_CYB_001,en,cyber,ITA2000::11,11,faithful_paraphrase,9,None,true,"All three attribution routes preserved, including automated systems."
+HIN_CYB_001,hi,cyber,ITA2000::11,11,faithful_paraphrase,9,None,false,Hindi counterpart of the cyber batch. All Hindi originals in this domain are author-rendered because the official Hindi PDF for this Act is unusable; see reports/source_provenance.md.
+ENG_CYB_002,en,cyber,ITA2000::13,13,exception_drop,5,Exception,true,Drops 'Save as otherwise agreed to between the originator and the addressee'. Parties lose the statutory freedom to fix a different moment of despatch by agreement.
+HIN_CYB_002,hi,cyber,ITA2000::13,13,exception_drop,5,Exception,false,Hindi counterpart; 'अन्यथा सहमति न होने पर' dropped.
+ENG_CYB_003,en,cyber,ITA2000::16,16,condition_drop,5,Condition,true,Drops the proviso requiring regard to commercial circumstances and the nature of transactions. The discretionary power survives without the statutory constraint on how it is exercised.
+HIN_CYB_003,hi,cyber,ITA2000::16,16,condition_drop,5,Condition,false,Hindi counterpart; परंतुक dropped.
+ENG_CYB_004,en,cyber,ITA2000::23,23,omission,5,Omission,true,"Drops both the five-thousand-rupee ceiling and the forty-five-day filing deadline. A reader would not know a renewal can be filed at any time, including after expiry."
+ENG_CYB_033,en,cyber,ITA2000::23,23,hallucination,4,Date,true,"The filing window shrinks from forty-five days to fifteen days. The fee ceiling is correctly preserved, which makes the date the only defect and keeps the probe clean."
+HIN_CYB_004,hi,cyber,ITA2000::23,23,omission,5,Omission,false,Hindi counterpart; फीस सीमा और समय-सीमा dropped.
+HIN_CYB_033,hi,cyber,ITA2000::23,23,hallucination,4,Date,false,Hindi counterpart; 'पैंतालीस दिन' को 'पंद्रह दिन' कर दिया गया।
+ENG_CYB_005,en,cyber,ITA2000::24,24,exception_drop,4,Exception,true,"Drops the audi alteram partem proviso. The simplification removes the only procedural protection in the section, which is the natural-justice guarantee."
+ENG_CYB_036,en,cyber,ITA2000::24,24,hallucination,3,Entity,true,"The authority exercising the licensing power is substituted: the Controller becomes the Central Government, and the pronoun follows. The section still reads perfectly well, which is what makes an entity swap of this kind hard to detect without legal background."
+HIN_CYB_005,hi,cyber,ITA2000::24,24,exception_drop,4,Exception,false,Hindi counterpart; सुनवाई का अवसर proviso dropped.
+HIN_CYB_036,hi,cyber,ITA2000::24,24,hallucination,3,Entity,false,Hindi counterpart; 'नियंत्रक' के स्थान पर 'केंद्र सरकार' रखा गया और सर्वनाम स्त्रीलिंग कर दिया गया।
+ENG_CYB_006,en,cyber,ITA2000::27,27,scope_narrowing,6,Scope,true,"Drops 'in writing'. A delegation that the Act requires to be documented becomes one that may be made orally, which removes the only evidential trail the section prescribes."
+HIN_CYB_006,hi,cyber,ITA2000::27,27,scope_narrowing,6,Scope,false,Hindi counterpart; 'लेखबद्ध रूप से' dropped.
+ENG_CYB_007,en,cyber,ITA2000::28,28,scope_narrowing,6,Scope,true,Drops 'subject to such limitations laid down under that Act'. Investigatory powers are described without the statutory limits attached to them.
+HIN_CYB_007,hi,cyber,ITA2000::28,28,scope_narrowing,6,Scope,false,Hindi counterpart; सीमाओं वाला खंड dropped.
+ENG_CYB_008,en,cyber,ITA2000::30,30,omission,5,Omission,true,"Drops the limb on secrecy and privacy of electronic signatures. The list is presented as complete, so confidentiality of signature data appears not to be a statutory duty at all."
+HIN_CYB_008,hi,cyber,ITA2000::30,30,omission,5,Omission,false,Hindi counterpart; गोपनीयता वाला खंड dropped.
+ENG_CYB_009,en,cyber,ITA2000::31,31,faithful_paraphrase,8,None,true,Vicarious compliance duty preserved.
+HIN_CYB_009,hi,cyber,ITA2000::31,31,faithful_paraphrase,8,None,false,Hindi counterpart.
+ENG_CYB_010,en,cyber,ITA2000::32,32,faithful_paraphrase,10,None,true,Short display requirement; nothing at risk in rewording.
+HIN_CYB_010,hi,cyber,ITA2000::32,32,faithful_paraphrase,10,None,false,Hindi counterpart.
+ENG_CYB_011,en,cyber,ITA2000::33,33,modal_weakening,7,Obligation/Permission,true,"shall ... immediately -> should ... promptly. Both the modality and the timing are softened at once, so a mandatory immediate surrender becomes an expectation of reasonably prompt action."
+HIN_CYB_011,hi,cyber,ITA2000::33,33,modal_weakening,7,Obligation/Permission,false,Hindi counterpart; 'तुरंत ... करेगा' -> 'शीघ्र ही ... करे'.
+ENG_CYB_012,en,cyber,ITA2000::34,34,scope_narrowing,7,Scope,true,"Drops the materiality threshold 'materially and'. Non-material adverse facts become disclosable, turning a targeted duty into an open-ended one."
+HIN_CYB_012,hi,cyber,ITA2000::34,34,scope_narrowing,7,Scope,false,Hindi counterpart; 'सारभूत रूप से' materiality threshold dropped.
+ENG_CYB_013,en,cyber,ITA2000::36,36,faithful_paraphrase,8,None,true,Both certified matters preserved.
+HIN_CYB_013,hi,cyber,ITA2000::36,36,faithful_paraphrase,8,None,false,Hindi counterpart.
+ENG_CYB_014,en,cyber,ITA2000::39,39,scope_narrowing,7,Scope,true,"Drops 'specified in the Digital Signature Certificate'. Publication anywhere becomes compliance, though the section requires publication where relying parties will actually look."
+HIN_CYB_014,hi,cyber,ITA2000::39,39,scope_narrowing,7,Scope,false,Hindi counterpart; 'प्रमाणपत्र में विनिर्दिष्ट' dropped.
+ENG_CYB_015,en,cyber,ITA2000::40,40,faithful_paraphrase,8,None,true,The condition precedent and the required method are both preserved.
+HIN_CYB_015,hi,cyber,ITA2000::40,40,faithful_paraphrase,8,None,false,Hindi counterpart.
+ENG_CYB_016,en,cyber,ITA2000::42,42,scope_narrowing,6,Scope,true,"Drops 'and take all steps to prevent its disclosure'. The duty is reduced from an outcome-oriented obligation to a standard of care, so a subscriber who is careless but well-intentioned is no longer in breach."
+HIN_CYB_016,hi,cyber,ITA2000::42,42,scope_narrowing,6,Scope,false,Hindi counterpart; 'प्रकटीकरण रोकने के सभी उपाय' dropped.
+ENG_CYB_017,en,cyber,ITA2000::44,44,omission,5,Omission,true,"Drops 'for each such failure'. The omission changes the exposure from per-instance to per-person, which for a serial defaulter is an unbounded reduction in liability."
+ENG_CYB_031,en,cyber,ITA2000::44,44,hallucination,3,Number,true,"The penalty ceiling is reduced from fifteen lakh to five lakh rupees. Every other element, including the per-failure multiplier, is intact — a single-token numeric substitution that changes the exposure threefold."
+HIN_CYB_017,hi,cyber,ITA2000::44,44,omission,5,Omission,false,Hindi counterpart; 'प्रत्येक ऐसी असफलता के लिए' dropped.
+HIN_CYB_031,hi,cyber,ITA2000::44,44,hallucination,3,Number,false,Hindi counterpart; 'पंद्रह लाख' को 'पाँच लाख' कर दिया गया।
+ENG_CYB_018,en,cyber,ITA2000::45,45,scope_narrowing,6,Scope,true,"Collapses the two-tier compensation ceiling into the lower tier alone. Corporate contraveners face a tenfold reduction in exposure, and the distinction between them and individuals disappears."
+ENG_CYB_034,en,cyber,ITA2000::45,45,hallucination,2,Number,true,"The corporate compensation ceiling is inflated from ten lakh to ten crore rupees, a hundredfold increase, while the individual ceiling stays at one lakh. Both the magnitude and the statutory ratio between the two tiers are destroyed."
+HIN_CYB_018,hi,cyber,ITA2000::45,45,scope_narrowing,6,Scope,false,Hindi counterpart; दो-स्तरीय सीमा एक स्तर में समाहित कर दी गई।
+HIN_CYB_034,hi,cyber,ITA2000::45,45,hallucination,2,Number,false,Hindi counterpart; 'दस लाख' को 'दस करोड़' कर दिया गया।
+ENG_CYB_019,en,cyber,ITA2000::47,47,omission,6,Omission,true,"Drops the repetitive-nature factor. Repeat offending can no longer be reflected in the quantum, though the section expressly directs the officer to consider it."
+HIN_CYB_019,hi,cyber,ITA2000::47,47,omission,6,Omission,false,Hindi counterpart; पुनरावृत्ति कारक dropped.
+ENG_CYB_020,en,cyber,ITA2000::55,55,faithful_paraphrase,8,None,true,The word 'merely' is load-bearing and is preserved: it is what prevents the clause from curing every defect.
+HIN_CYB_020,hi,cyber,ITA2000::55,55,faithful_paraphrase,8,None,false,Hindi counterpart; 'केवल' शब्द सुरक्षित रखा गया।
+ENG_CYB_021,en,cyber,ITA2000::59,59,faithful_paraphrase,9,None,true,All three representation routes preserved.
+HIN_CYB_021,hi,cyber,ITA2000::59,59,faithful_paraphrase,9,None,false,Hindi counterpart.
+ENG_CYB_022,en,cyber,ITA2000::60,60,modal_weakening,7,Obligation/Permission,true,"shall -> may. A mandatory application of the limitation statute becomes discretionary, which is exactly the kind of shift that changes whether a time-barred appeal can be entertained."
+HIN_CYB_022,hi,cyber,ITA2000::60,60,modal_weakening,7,Obligation/Permission,false,Hindi counterpart; 'लागू होंगे' -> 'लागू हो सकते हैं'.
+ENG_CYB_023,en,cyber,ITA2000::61,61,scope_narrowing,5,Scope,true,"Drops the bar on injunctions. The ouster of the courts' adjudicatory jurisdiction is kept while the ouster of their interim power is removed, so a party could still seek an injunction in a matter the Act commits to the Tribunal."
+HIN_CYB_023,hi,cyber,ITA2000::61,61,scope_narrowing,5,Scope,false,Hindi counterpart; निषेधाज्ञा वाला खंड dropped.
+ENG_CYB_024,en,cyber,ITA2000::62,62,exception_drop,4,Exception,true,"Drops the proviso allowing a sixty-day extension for sufficient cause. A hard deadline is presented where the Act provides for condonation, which would mislead a litigant who is out of time."
+ENG_CYB_032,en,cyber,ITA2000::62,62,hallucination,3,Date,true,The primary limitation period is altered from sixty days to ninety days while the proviso's sixty-day extension is left untouched. A Date-error probe whose inconsistency is internal: the extension is now shorter than the period it extends.
+HIN_CYB_024,hi,cyber,ITA2000::62,62,exception_drop,4,Exception,false,Hindi counterpart; परंतुक dropped.
+HIN_CYB_032,hi,cyber,ITA2000::62,62,hallucination,3,Date,false,"Hindi counterpart; 'साठ दिन' को 'नब्बे दिन' कर दिया गया, परंतुक अपरिवर्तित।"
+ENG_CYB_025,en,cyber,ITA2000::64,64,omission,5,Omission,true,"Drops the automatic suspension of the licence or certificate until payment. The recovery mechanism survives but the coercive consequence, which is the operative sanction, is removed."
+HIN_CYB_025,hi,cyber,ITA2000::64,64,omission,5,Omission,false,Hindi counterpart; निलंबन वाला परिणाम dropped.
+ENG_CYB_026,en,cyber,ITA2000::65,65,condition_drop,5,Condition,true,"Drops 'when the computer source code is required to be kept or maintained by law'. This is the element that keeps the offence within its proper bounds; without it, altering any source code at all becomes criminal."
+HIN_CYB_026,hi,cyber,ITA2000::65,65,condition_drop,5,Condition,false,Hindi counterpart; 'विधि द्वारा रखे जाने की अपेक्षा' शर्त dropped.
+ENG_CYB_027,en,cyber,ITA2000::71,71,scope_narrowing,6,Scope,true,"Drops 'or suppresses any material fact from'. Non-disclosure, which the section criminalises alongside misstatement, is no longer an offence on the face of the simplification."
+HIN_CYB_027,hi,cyber,ITA2000::71,71,scope_narrowing,6,Scope,false,Hindi counterpart; 'सारभूत तथ्य छिपाना' dropped.
+ENG_CYB_028,en,cyber,ITA2000::74,74,hallucination,2,Hallucination,true,"The sentencing structure is inverted: a maximum of two years becomes a minimum of two years, and the fine and the option of fine in lieu are deleted. Both invented changes increase severity."
+ENG_CYB_035,en,cyber,ITA2000::74,74,hallucination,2,Number,true,"Both numeric elements of the sentence are inflated — two years to seven, one lakh to ten lakh. The sentencing form ('may extend to', with the fine alternative and the 'or with both') is preserved, so the error is purely numeric rather than structural."
+HIN_CYB_028,hi,cyber,ITA2000::74,74,hallucination,2,Hallucination,false,Hindi counterpart; अधिकतम दो वर्ष को न्यूनतम दो वर्ष कर दिया गया और जुर्माना हटा दिया गया।
+HIN_CYB_035,hi,cyber,ITA2000::74,74,hallucination,2,Number,false,Hindi counterpart; 'दो वर्ष' और 'एक लाख रुपये' दोनों बढ़ा दिए गए।
+ENG_CYB_029,en,cyber,ITA2000::75,75,exception_drop,4,Exception,true,"Drops the territorial nexus requirement in sub-section (2). Without it the Act appears to reach conduct with no connection to India at all, which is precisely the limit sub-section (2) imposes."
+HIN_CYB_029,hi,cyber,ITA2000::75,75,exception_drop,4,Exception,false,Hindi counterpart; प्रादेशिक संबंध की शर्त dropped.
+ENG_CYB_030,en,cyber,ITA2000::86,86,exception_drop,5,Exception,true,Drops the two-year sunset on the removal-of-difficulties power. A power the legislature deliberately time-limited appears to be permanent.
+HIN_CYB_030,hi,cyber,ITA2000::86,86,exception_drop,5,Exception,false,Hindi counterpart; दो-वर्षीय सीमा dropped.
+ENG_SOG_007,en,sale_of_goods,SOGA1930::10,10,exception_drop,4,Exception,true,Drops the proviso requiring the buyer who has received and appropriated the goods to pay a reasonable price. The simplification leaves the buyer with the goods and no payment obligation.
+HIN_SOG_007,hi,sale_of_goods,SOGA1930::10,10,exception_drop,4,Exception,false,Hindi counterpart; परंतुक dropped.
+ENG_SOG_008,en,sale_of_goods,SOGA1930::11,11,faithful_paraphrase,8,None,true,"PDF extraction artefacts in the source text normalised ('arc' -> 'are', spaced words rejoined); wording otherwise unchanged."
+HIN_SOG_008,hi,sale_of_goods,SOGA1930::11,11,faithful_paraphrase,8,None,false,Hindi counterpart.
+ENG_SOG_009,en,sale_of_goods,SOGA1930::12,12,scope_narrowing,5,Scope,true,Drops 'but not to a right to reject the goods and treat the contract as repudiated'. That negative limb is the whole point of the warranty/condition distinction the section exists to draw.
+HIN_SOG_009,hi,sale_of_goods,SOGA1930::12,12,scope_narrowing,5,Scope,false,Hindi counterpart; 'किंतु माल को अस्वीकार करने ... अधिकार उत्पन्न नहीं होता' dropped.
+ENG_SOG_010,en,sale_of_goods,SOGA1930::13,13,faithful_paraphrase,8,None,true,The buyer's election between waiver and treating breach as breach of warranty is preserved.
+HIN_SOG_010,hi,sale_of_goods,SOGA1930::13,13,faithful_paraphrase,8,None,false,Hindi counterpart.
+ENG_SOG_011,en,sale_of_goods,SOGA1930::14,14,faithful_paraphrase,9,None,true,Both temporal variants (present sale and agreement to sell) preserved.
+HIN_SOG_011,hi,sale_of_goods,SOGA1930::14,14,faithful_paraphrase,9,None,false,Hindi counterpart.
+ENG_SOG_012,en,sale_of_goods,SOGA1930::15,15,condition_drop,5,Condition,true,"Drops the sale-by-sample-and-description clause. In a mixed sale the simplification leaves the sample as the only benchmark, which is exactly what the omitted words prevent."
+HIN_SOG_012,hi,sale_of_goods,SOGA1930::15,15,condition_drop,5,Condition,false,Hindi counterpart; नमूना-सह-वर्णन वाला खंड dropped.
+ENG_SOG_013,en,sale_of_goods,SOGA1930::16,16,exception_drop,4,Exception,true,"Drops the examination proviso. Caveat emptor as it applies to patent defects is removed, so a buyer who inspected and accepted the goods keeps a remedy the Act denies."
+HIN_SOG_013,hi,sale_of_goods,SOGA1930::16,16,exception_drop,4,Exception,false,Hindi counterpart; परीक्षा-संबंधी परंतुक dropped.
+ENG_SOG_014,en,sale_of_goods,SOGA1930::17,17,omission,5,Omission,true,"Drops limb (c), the latent-defect condition. This is the limb that protects the buyer against defects the sample itself conceals, so its removal is substantive rather than editorial."
+HIN_SOG_014,hi,sale_of_goods,SOGA1930::17,17,omission,5,Omission,false,Hindi counterpart; उपखंड (ग) dropped.
+ENG_SOG_015,en,sale_of_goods,SOGA1930::19,19,faithful_paraphrase,8,None,true,The party-intention rule and the three factors for ascertaining it are both preserved.
+HIN_SOG_015,hi,sale_of_goods,SOGA1930::19,19,faithful_paraphrase,8,None,false,Hindi counterpart.
+ENG_SOG_016,en,sale_of_goods,SOGA1930::20,20,omission,5,Omission,true,"Drops 'and it is immaterial whether the time of payment of the price or the time of delivery of the goods, or both, is postponed'. That clause is what makes the rule survive deferred payment or deferred delivery, so its loss invites the opposite reading."
+HIN_SOG_016,hi,sale_of_goods,SOGA1930::20,20,omission,5,Omission,false,Hindi counterpart; स्थगन वाला खंड dropped.
+ENG_SOG_017,en,sale_of_goods,SOGA1930::21,21,faithful_paraphrase,9,None,true,Both cumulative requirements (the act done and notice given) preserved.
+HIN_SOG_017,hi,sale_of_goods,SOGA1930::21,21,faithful_paraphrase,9,None,false,Hindi counterpart.
+ENG_SOG_018,en,sale_of_goods,SOGA1930::24,24,omission,4,Omission,true,"Drops limb (b) entirely. Silence plus retention, which is the commonest way property passes under a sale-or-return arrangement, no longer passes property at all."
+HIN_SOG_018,hi,sale_of_goods,SOGA1930::24,24,omission,4,Omission,false,Hindi counterpart; उपखंड (ख) dropped.
+ENG_SOG_019,en,sale_of_goods,SOGA1930::26,26,exception_drop,7,Exception,true,"Drops 'Unless otherwise agreed'. The section states a default that parties are free to displace; without those words it reads as a mandatory allocation of risk, which is a materially stronger proposition than the Act enacts."
+HIN_SOG_019,hi,sale_of_goods,SOGA1930::26,26,exception_drop,7,Exception,false,Hindi counterpart; 'अन्यथा सहमति न होने पर' dropped.
+ENG_SOG_020,en,sale_of_goods,SOGA1930::27,27,exception_drop,4,Exception,true,"Drops the mercantile-agent proviso in full, including the good-faith condition attached to it. The principal commercial exception to nemo dat is removed."
+HIN_SOG_020,hi,sale_of_goods,SOGA1930::27,27,exception_drop,4,Exception,false,Hindi counterpart; वाणिज्यिक अभिकर्ता वाला परंतुक dropped.
+ENG_SOG_021,en,sale_of_goods,SOGA1930::28,28,condition_drop,3,Condition,true,"Drops both protective conditions — good faith and absence of notice. The exception to nemo dat becomes unconditional, so a buyer who knows the seller has no authority still takes good title."
+HIN_SOG_021,hi,sale_of_goods,SOGA1930::28,28,condition_drop,3,Condition,false,Hindi counterpart; सद्भावना और ज्ञान-रहित होने की शर्तें dropped.
+ENG_SOG_022,en,sale_of_goods,SOGA1930::32,32,faithful_paraphrase,9,None,true,Symmetry between the two obligations preserved.
+HIN_SOG_022,hi,sale_of_goods,SOGA1930::32,32,faithful_paraphrase,9,None,false,Hindi counterpart.
+ENG_SOG_023,en,sale_of_goods,SOGA1930::34,34,omission,2,Omission,true,"Drops the second limb, which is a negation. The simplification therefore asserts the proposition the section expressly denies — that part delivery severs the remainder — so the stated rule is the opposite of the enacted one."
+HIN_SOG_023,hi,sale_of_goods,SOGA1930::34,34,omission,2,Omission,false,"Hindi counterpart; निषेधात्मक दूसरा खंड dropped, जिससे अर्थ उलट जाता है।"
+ENG_SOG_001,en,sale_of_goods,SOGA1930::4,4,faithful_paraphrase,9,None,true,'property in goods' rendered as 'ownership of goods'; the part-owner limb is preserved.
+HIN_SOG_001,hi,sale_of_goods,SOGA1930::4,4,faithful_paraphrase,9,None,false,Hindi counterpart. All Hindi originals in this batch are author-rendered because the official Hindi PDF for this Act is unusable; see reports/source_provenance.md.
+ENG_SOG_024,en,sale_of_goods,SOGA1930::42,42,omission,5,Omission,true,Drops deemed acceptance by retention after a reasonable time. Buyers who keep goods without complaining would no longer be treated as having accepted them.
+HIN_SOG_024,hi,sale_of_goods,SOGA1930::42,42,omission,5,Omission,false,Hindi counterpart; 'युक्तियुक्त समय बीत जाने पर' वाला खंड dropped.
+ENG_SOG_025,en,sale_of_goods,SOGA1930::43,43,negation_flip,1,Contradiction,true,"The negation is removed and a positive duty substituted for it, and the intimation alternative is dropped. The simplification states the exact opposite of the section."
+HIN_SOG_025,hi,sale_of_goods,SOGA1930::43,43,negation_flip,1,Contradiction,false,Hindi counterpart; निषेध हटाकर उसके विपरीत कर्तव्य रख दिया गया।
+ENG_SOG_026,en,sale_of_goods,SOGA1930::46,46,omission,5,Omission,true,"Drops limb (c), the right of re-sale. The list is presented as exhaustive, so the unpaid seller's third statutory remedy disappears."
+HIN_SOG_026,hi,sale_of_goods,SOGA1930::46,46,omission,5,Omission,false,Hindi counterpart; उपखंड (ग) पुनर्विक्रय का अधिकार dropped.
+ENG_SOG_002,en,sale_of_goods,SOGA1930::5,5,exception_drop,5,Exception,true,"Drops 'Subject to the provisions of any law for the time being in force'. The subordination of this section to other statutes, which is what makes it non-exhaustive, disappears."
+HIN_SOG_002,hi,sale_of_goods,SOGA1930::5,5,exception_drop,5,Exception,false,Hindi counterpart; 'तत्कालीन प्रवृत्त किसी विधि के उपबंधों के अधीन रहते हुए' dropped.
+ENG_SOG_027,en,sale_of_goods,SOGA1930::50,50,condition_drop,2,Condition,true,"Drops 'when the buyer of goods becomes insolvent', the sole triggering condition. Stoppage in transit exists only because of the buyer's insolvency; without the trigger the simplification confers an unqualified right to retake goods from a solvent buyer."
+HIN_SOG_027,hi,sale_of_goods,SOGA1930::50,50,condition_drop,2,Condition,false,Hindi counterpart; 'क्रेता दिवालिया हो जाता है' यह एकमात्र प्रतिबंध dropped.
+ENG_SOG_028,en,sale_of_goods,SOGA1930::58,58,exception_drop,4,Exception,true,"Drops the subordination to Chapter II of the Specific Relief Act. Those provisions are what govern when specific performance is and is not available, so the discretionary power is described without its controlling statute."
+ENG_SOG_033,en,sale_of_goods,SOGA1930::58,58,hallucination,4,Entity,true,"The cross-referenced statute is updated from the Specific Relief Act, 1877 to the Specific Relief Act, 1963. This is the interesting case: the substituted Act is the one actually in force today, so a reader may regard the change as a correction rather than an error, while the operative referent of the original provision has been altered. Retained deliberately as a contested example for the error analysis."
+HIN_SOG_028,hi,sale_of_goods,SOGA1930::58,58,exception_drop,4,Exception,false,Hindi counterpart; विनिर्दिष्ट अनुतोष अधिनियम का अधीनता-खंड dropped.
+HIN_SOG_033,hi,sale_of_goods,SOGA1930::58,58,hallucination,4,Entity,false,Hindi counterpart; '1877' को '1963' कर दिया गया।
+ENG_SOG_003,en,sale_of_goods,SOGA1930::6,6,faithful_paraphrase,9,None,true,The legal conversion of a purported present sale into an agreement to sell is preserved.
+HIN_SOG_003,hi,sale_of_goods,SOGA1930::6,6,faithful_paraphrase,9,None,false,Hindi counterpart.
+ENG_SOG_029,en,sale_of_goods,SOGA1930::60,60,contradiction,2,Contradiction,true,"A choice between two courses becomes a single mandatory course. The right to keep the contract alive and await delivery, which anticipatory breach doctrine exists to protect, is extinguished."
+HIN_SOG_029,hi,sale_of_goods,SOGA1930::60,60,contradiction,2,Contradiction,false,Hindi counterpart; विकल्प समाप्त करके एक अनिवार्य मार्ग रख दिया गया।
+ENG_SOG_030,en,sale_of_goods,SOGA1930::62,62,condition_drop,4,Condition,true,Drops 'if the usage is such as to bind both parties to the contract'. A local trade usage that binds only one party could now displace the statutory implied terms.
+HIN_SOG_030,hi,sale_of_goods,SOGA1930::62,62,condition_drop,4,Condition,false,Hindi counterpart; 'दोनों पक्षकारों को आबद्ध करने वाली' शर्त dropped.
+ENG_SOG_031,en,sale_of_goods,SOGA1930::63,63,faithful_paraphrase,10,None,true,One-sentence provision; the fact/law characterisation is the whole content and is preserved.
+HIN_SOG_031,hi,sale_of_goods,SOGA1930::63,63,faithful_paraphrase,10,None,false,Hindi counterpart.
+ENG_SOG_032,en,sale_of_goods,SOGA1930::66,66,omission,5,Omission,true,"Drops limbs (d) and (e). The saving of unrepealed sale-of-goods enactments and of consistent rules of law is removed, so the section reads as a closed list of what survives."
+HIN_SOG_032,hi,sale_of_goods,SOGA1930::66,66,omission,5,Omission,false,Hindi counterpart; खंड (घ) और (ङ) dropped.
+ENG_SOG_004,en,sale_of_goods,SOGA1930::7,7,condition_drop,5,Condition,true,"Drops 'without the knowledge of the seller'. A seller who knowingly contracted to sell perished goods now benefits from the same automatic voiding, which removes the fault element entirely."
+HIN_SOG_004,hi,sale_of_goods,SOGA1930::7,7,condition_drop,5,Condition,false,Hindi counterpart; 'विक्रेता के ज्ञान के बिना' dropped.
+ENG_SOG_005,en,sale_of_goods,SOGA1930::8,8,scope_narrowing,6,Scope,true,"Drops 'before the risk passes to the buyer'. The temporal boundary that fixes when this doctrine stops applying is removed, so loss after risk has passed would still avoid the agreement."
+HIN_SOG_005,hi,sale_of_goods,SOGA1930::8,8,scope_narrowing,6,Scope,false,Hindi counterpart; 'क्रेता को जोखिम के हस्तांतरित होने से पूर्व' dropped.
+ENG_SOG_006,en,sale_of_goods,SOGA1930::9,9,faithful_paraphrase,8,None,true,The default rule and the fact/question-of-law characterisation are both preserved.
+HIN_SOG_006,hi,sale_of_goods,SOGA1930::9,9,faithful_paraphrase,8,None,false,Hindi counterpart.

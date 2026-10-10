@@ -1,0 +1,68 @@
+{
+  "provenance": {
+    "generated_at_utc": "2026-10-06T12:17:23Z",
+    "git_revision": "unknown",
+    "python_version": "3.12.6",
+    "platform": "macOS-27.0.1-arm64-arm-64bit",
+    "config_fingerprint": "d014eeff5f86",
+    "project_version": "0.1.0",
+    "seed": 42
+  },
+  "authored_dir": "data/raw/authored",
+  "authored_files": [
+    "contract_batch01.jsonl",
+    "contract_batch02.jsonl",
+    "contract_batch03.jsonl",
+    "contract_batch04.jsonl",
+    "cyber_batch01.jsonl",
+    "sale_of_goods_batch01.jsonl",
+    "targeted_error_batch01.jsonl"
+  ],
+  "split_assigned": true,
+  "n_rows": 340,
+  "n_languages": {
+    "en": 170,
+    "hi": 170
+  },
+  "n_domains": {
+    "contract": 202,
+    "cyber": 72,
+    "sale_of_goods": 66
+  },
+  "draft_score_histogram": {
+    "1": 6,
+    "2": 20,
+    "3": 20,
+    "4": 54,
+    "5": 78,
+    "6": 30,
+    "7": 20,
+    "8": 48,
+    "9": 56,
+    "10": 8
+  },
+  "draft_error_type_counts": {
+    "None": 112,
+    "Omission": 58,
+    "Scope": 44,
+    "Exception": 42,
+    "Condition": 40,
+    "Obligation/Permission": 12,
+    "Contradiction": 10,
+    "Number": 8,
+    "Hallucination": 6,
+    "Date": 4,
+    "Entity": 4
+  },
+  "n_source_groups": 159,
+  "n_verbatim_originals": 170,
+  "n_author_rendered_originals": 170,
+  "groups_without_both_languages": [],
+  "warnings": [],
+  "integrity": {
+    "human_lmp_score_populated": 0,
+    "error_type_populated": 0,
+    "decision_populated": 0,
+    "note": "All three are zero by construction. The corpus contains no human annotation yet; every score is a curator draft and is excluded from ground truth by src.data.schema.is_gold."
+  }
+}

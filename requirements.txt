@@ -1,0 +1,55 @@
+# ---------------------------------------------------------------------------
+# CSET 346 Natural Language Processing — Semester Project
+# Explainable Multilingual Legal Meaning Preservation Using JUDGEBERT
+#
+# Target: Python >= 3.10 (developed and tested on 3.11, macOS / Linux)
+#
+# Lower bounds are used deliberately so pip can resolve a working set on a
+# fresh machine.  After your FIRST successful install, freeze the exact
+# resolved set and commit it alongside this file:
+#
+#     pip freeze > requirements.lock.txt
+#
+# Cite requirements.lock.txt (not this file) in the paper's reproducibility
+# section — it is the only artefact that pins exact versions.
+# ---------------------------------------------------------------------------
+
+# --- core scientific stack -------------------------------------------------
+numpy>=1.24
+pandas>=2.0
+scipy>=1.11
+scikit-learn>=1.3
+pyyaml>=6.0
+tqdm>=4.66
+
+# --- deep learning / transformers ------------------------------------------
+# torch: on Apple Silicon this installs the MPS-enabled build automatically.
+#        On a CPU-only machine it installs the CPU build.  No CUDA wheel index
+#        is pinned here on purpose — see README "Hardware" for GPU installs.
+torch>=2.1
+transformers>=4.38
+sentencepiece>=0.1.99        # required by the XLM-R and MuRIL tokenizers
+sentence-transformers>=2.5   # Baseline 2 (multilingual Sentence-BERT)
+accelerate>=0.27             # device placement / mixed precision helpers
+
+# --- visualisation (experiment figures) ------------------------------------
+matplotlib>=3.8
+seaborn>=0.13
+plotly>=5.18                 # research dashboard charts
+
+# --- demo application + annotation tool ------------------------------------
+streamlit>=1.31
+
+# --- source document extraction --------------------------------------------
+# Used only by src/data/extract_sources.py, to segment the official statute
+# PDFs into sections.  Not needed to train or evaluate a model, but required
+# to rebuild data/raw/sections/ from data/raw/sources/.
+pypdf>=4.0
+
+# --- testing / development --------------------------------------------------
+pytest>=8.0
+pytest-cov>=4.1
+
+# --- optional ---------------------------------------------------------------
+# jupyter>=1.0               # only if you want to explore interactively
+# datasets>=2.16             # only if you export to the HF datasets format

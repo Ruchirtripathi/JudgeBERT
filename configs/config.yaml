@@ -1,0 +1,402 @@
+# ===========================================================================
+# CSET 346 NLP — Explainable Multilingual Legal Meaning Preservation
+# Master configuration file.
+#
+# Every script in src/ and app/ reads its settings from here via
+# src/utils/config.py.  Nothing is hard-coded in the pipeline, so an
+# experiment can be fully re-specified by committing a copy of this file.
+#
+# Usage:
+#   from src.utils.config import load_config
+#   cfg = load_config()                       # uses configs/config.yaml
+#   cfg = load_config("configs/ablation.yaml")  # or an explicit override
+# ===========================================================================
+
+project:
+  name: legal-meaning-preservation
+  short_name: lmp
+  version: 0.1.0
+  # Single global seed. Every stochastic component derives its seed from this
+  # so that one number reproduces the whole pipeline.
+  seed: 42
+  description: >
+    Explainable multilingual (English + Hindi) prediction of Legal Meaning
+    Preservation (LMP) between an original and a simplified/reformulated
+    legal sentence, inspired by JUDGEBERT (Grabar et al.).
+
+# ---------------------------------------------------------------------------
+# Filesystem layout.  All paths are relative to the repository root.
+# ---------------------------------------------------------------------------
+paths:
+  root: .
+  raw_dir: data/raw
+  processed_dir: data/processed
+  annotations_dir: data/annotations
+  results_dir: results
+  reports_dir: reports
+  figures_dir: results/figures
+  model_dir: models/checkpoints
+  log_dir: logs
+
+# ---------------------------------------------------------------------------
+# Dataset definition.
+# ---------------------------------------------------------------------------
+dataset:
+  # The authoritative, human-annotated master file.
+  master_file: data/processed/lmp_pairs.csv
+
+  # Languages in scope.  'en' = English, 'hi' = Hindi (Devanagari).
+  languages: [en, hi]
+
+  # Legal domains present in the corpus.
+  #
+  # Domain names track the statute actually drawn on, because the corpus is
+  # built from authentic statutory text rather than invented sentences.  Two
+  # of the three candidate domains originally considered for this project
+  # (consumer protection, insurance) were dropped when it turned out no
+  # verifiable public-domain source could be obtained for them in both
+  # languages; see reports/source_provenance.md.  What replaced them is a
+  # genuine cross-domain split:
+  #
+  #   contract       -> Indian Contract Act, 1872       (primary domain)
+  #   cyber          -> Information Technology Act, 2000 (held-out domain)
+  #   sale_of_goods  -> Sale of Goods Act, 1930          (third domain)
+  domains: [contract, cyber, sale_of_goods]
+
+  primary_domain: contract
+  # Domain held out entirely from training for Experiment 3.
+  # null disables the new-domain generalisation experiment.
+  generalization_domain: cyber
+
+  # Score scale for human LMP annotation.
+  score_min: 1
+  score_max: 10
+
+  # Columns every row MUST have. validate_data.py fails loudly if any missing.
+  required_columns:
+    - pair_id
+    - language
+    - legal_domain
+    - original_text
+    - simplified_text
+    - human_lmp_score
+    - decision
+    - error_type
+    - source
+    - split
+  optional_columns:
+    - context
+    - source_section
+    - source_url
+    - simplification_type
+    - annotation_status
+    - annotator_id
+    - annotated_at
+    - notes
+
+  # -------------------------------------------------------------------------
+  # Annotation-status vocabulary.  This is the integrity backbone of the
+  # project: only rows whose status begins with "human" may ever be used as
+  # ground truth in a reported experiment.
+  #
+  #   unannotated          - no score at all; human_lmp_score is empty
+  #   draft                - a machine-drafted suggestion for the annotator.
+  #                          *** NEVER valid as ground truth. ***
+  #   human_single         - scored by exactly one human annotator
+  #   human_multi_pending  - >=2 annotators, agreement not yet adjudicated
+  #   human_consensus      - adjudicated / agreed gold label
+  # -------------------------------------------------------------------------
+  annotation_status_values:
+    - unannotated
+    - draft
+    - human_single
+    - human_multi_pending
+    - human_consensus
+
+  # Statuses accepted as ground truth by evaluation code.
+  gold_status_values: [human_single, human_multi_pending, human_consensus]
+  # Statuses that are explicitly NOT ground truth (used for smoke tests only).
+  non_gold_status_values: [unannotated, draft]
+
+# ---------------------------------------------------------------------------
+# Decision thresholds: map a continuous LMP score -> 3-way decision.
+# See src/evaluation/decision.py and reports/decision_thresholds.md.
+# These are DEFAULTS. They must be calibrated on the validation split and the
+# final values recorded in the paper.
+# ---------------------------------------------------------------------------
+decision:
+  # >= preserved_min                 -> "Preserved"
+  # >= partial_min and < preserved   -> "Partially Preserved"
+  # <  partial_min                   -> "Not Preserved"
+  preserved_min: 8.0
+  partial_min: 5.0
+  labels: [Preserved, Partially Preserved, Not Preserved]
+  # Calibrate thresholds on validation data rather than assuming the above.
+  calibrate_on_validation: true
+
+# ---------------------------------------------------------------------------
+# Legal error taxonomy (single-label, multi-class).
+# Used by the rule-assisted detector and (if enough annotations exist) by the
+# transformer error classifier.
+# ---------------------------------------------------------------------------
+error_taxonomy:
+  labels:
+    - None
+    - Omission
+    - Hallucination
+    - Contradiction
+    - Obligation/Permission
+    - Condition
+    - Exception
+    - Scope
+    - Date
+    - Number
+    - Entity
+    - Other
+
+# ---------------------------------------------------------------------------
+# Train / validation / test splitting.
+# ---------------------------------------------------------------------------
+splits:
+  train: 0.70
+  validation: 0.15
+  test: 0.15
+  seed: 42
+  # Rows are grouped by this column before splitting so that sibling
+  # reformulations of the same source sentence can never straddle two splits.
+  # This is the primary anti-leakage mechanism.
+  group_column: source_group
+  # Stratification key = concatenation of these columns, bucketed.
+  stratify_columns: [language, legal_domain, score_bucket]
+  # Score buckets used for stratification and for imbalance reporting.
+  score_buckets:
+    - [1, 3]    # Not Preserved
+    - [4, 7]    # Partially Preserved
+    - [8, 10]   # Preserved
+  # Near-duplicate guard: reject any cross-split pair whose normalised token
+  # Jaccard similarity on the original_text exceeds this value.
+  leakage_similarity_threshold: 0.85
+
+# ---------------------------------------------------------------------------
+# Preprocessing.
+# DELIBERATELY CONSERVATIVE.  Legal meaning lives in numbers, dates,
+# negation, modals, conditions and exceptions; normalising those away would
+# destroy the very signal the model is meant to detect.
+# ---------------------------------------------------------------------------
+preprocessing:
+  unicode_nfkc: true          # NFC-normalise Devanagari so 'ा' + 'ा' merges
+  strip_whitespace: true
+  collapse_whitespace: true
+  lowercase: false            # keeps "Shall" vs "shall" and legal caps
+  remove_punctuation: false
+  remove_digits: false        # numbers are legally load-bearing
+  strip_accents: false       # no-op for Hindi, harmless for English
+  # Legally salient tokens are protected from any future aggressive
+  # normalisation step and are extracted as features by the error detector.
+  protected_patterns:
+    modals: [shall, must, may, can, will, should, ought, required, permitted,
+             prohibited, entitled, liable, authorized, authorised, forbidden]
+    negations: ["not", "no", "never", "neither", "nor", "cannot", "n't",
+                "बिना", "नहीं", "मत", "न"]
+    conditions: [if, unless, provided, subject, when, where, in case,
+                 "प्रदान", "यदि", "जब", "जबकि", "शर्त"]
+    exceptions: [except, exception, unless, other than, save as, notwithstanding,
+                 "सिवाय", "अपवाद", "के अलावा"]
+    quantifiers: [all, any, every, each, some, certain, no, none, only, sole,
+                  "सभी", "कोई", "प्रत्येक", "कुछ", "केवल"]
+  # Sentence-level tokenisation is language-aware; see src/data/preprocess.py
+  tokenizer:
+    english: regex_word_punct
+    hindi: regex_devanagari_word_punct
+
+# ---------------------------------------------------------------------------
+# Baseline 1 — TF-IDF + cosine similarity.
+# ---------------------------------------------------------------------------
+models:
+  tfidf:
+    enabled: true
+    word_ngram_range: [1, 2]
+    char_ngram_range: [3, 5]
+    min_df: 1
+    sublinear_tf: true
+    # Use both word and character views; character n-grams give robustness to
+    # Hindi inflection and to English morphological variation.
+    use_char_ngrams: true
+    # Cosine similarity is NOT an LMP score. To report RMSE/MAE we fit an
+    # explicit, documented linear calibration on the TRAIN split only.
+    calibration: linear_regression
+    clip_to_score_range: true
+
+  # -------------------------------------------------------------------------
+  # Baseline 2 — multilingual Sentence-BERT.
+  # -------------------------------------------------------------------------
+  sbert:
+    enabled: true
+    # Multilingual (50+ languages incl. Hindi), strong on STS benchmarks.
+    # Alternatives to ablate: paraphrase-multilingual-MiniLM-L12-v2 (faster),
+    # l3cube-pune/hindi-sentence-similarity-sbert (Hindi-specialised).
+    model_name: sentence-transformers/paraphrase-multilingual-mpnet-base-v2
+    batch_size: 32
+    normalize_embeddings: true
+    max_seq_length: 128
+    calibration: linear_regression
+    clip_to_score_range: true
+
+  # -------------------------------------------------------------------------
+  # Main model — JUDGEBERT-inspired cross-encoder regression.
+  #
+  # NOTE ON NAMING: this is "JUDGEBERT-inspired", not a reproduction. The
+  # original work's exact architecture/training recipe is not fully specified
+  # in the public paper, so we implement a cross-encoder regression model in
+  # the same spirit and say so explicitly in the paper.
+  # -------------------------------------------------------------------------
+  judgebert:
+    enabled: true
+    # Selected after evaluating suitability for English + Hindi (see
+    # reports/model_selection.md):
+    #   google/muril-base-cased  -> 16 Indian languages + English, Indic
+    #                               corpora + translated English. Best fit.
+    #   xlm-roberta-base         -> strong general cross-lingual baseline.
+    #   bert-base-multilingual-cased -> weaker Hindi, historical baseline.
+    backbone: google/muril-base-cased
+    ablation_backbones:
+      - xlm-roberta-base
+      - bert-base-multilingual-cased
+    max_seq_length: 192          # [CLS] original [SEP] simplified [SEP]
+    dropout: 0.2
+    head_hidden_size: 0          # 0 = single linear layer on pooled output
+    pooling: cls                 # cls | mean
+    # Predicting (y-1)/(max-1) in [0,1] stabilises regression on a 1-10 scale.
+    target_scaling: minmax       # minmax | none
+    loss: smooth_l1             # smooth_l1 | mse
+    smooth_l1_beta: 0.5
+    clip_predictions: true
+
+  # -------------------------------------------------------------------------
+  # Legal error-type classifier.
+  # -------------------------------------------------------------------------
+  error_classifier:
+    # "rule"   -> deterministic cue-based detector (no training required)
+    # "model"  -> transformer multi-label head trained on human error_type
+    # "hybrid" -> rules as features + model, when enough labels exist
+    mode: rule
+    min_examples_per_class_to_train: 15   # below this, do NOT train a model
+    # Rule detector weights/thresholds
+    rules:
+      numeric_mismatch_weight: 1.0
+      date_mismatch_weight: 1.0
+      modal_strength_mismatch_weight: 1.0
+      negation_flip_weight: 1.0
+      condition_drop_weight: 1.0
+      exception_drop_weight: 1.0
+      quantifier_weakening_weight: 1.0
+      entity_mismatch_weight: 1.0
+      length_ratio_omission_threshold: 0.55
+      length_ratio_hallucination_threshold: 1.8
+
+# ---------------------------------------------------------------------------
+# Training (JUDGEBERT-inspired model).
+# ---------------------------------------------------------------------------
+training:
+  seed: 42
+  epochs: 30
+  batch_size: 8
+  eval_batch_size: 16
+  learning_rate: 2.0e-5
+  weight_decay: 0.01
+  adam_epsilon: 1.0e-8
+  warmup_ratio: 0.1
+  max_grad_norm: 1.0
+  scheduler: linear           # linear | cosine | constant
+  early_stopping:
+    enabled: true
+    patience: 5
+    metric: val_rmse          # lower is better
+    mode: min
+    min_delta: 0.001
+  # Keep the best checkpoint by val_rmse, not the last epoch.
+  save_best_only: true
+  # Freeze the encoder for the first N epochs to avoid wrecking pretrained
+  # weights on a small dataset, then unfreeze for full fine-tuning.
+  freeze_encoder_epochs: 1
+  gradient_accumulation_steps: 2
+  device: auto                # auto | cpu | cuda | mps
+  fp16: false                 # only meaningful on CUDA
+  log_every_n_steps: 5
+  # Deterministic cuDNN/CPU settings for reproducibility.
+  deterministic: true
+
+# ---------------------------------------------------------------------------
+# Evaluation.
+# ---------------------------------------------------------------------------
+evaluation:
+  metrics: [pearson, spearman, rmse, mae, r2]
+  # Bootstrap CIs so that differences between models can be discussed
+  # honestly on a small test set instead of over-reading point estimates.
+  bootstrap:
+    enabled: true
+    n_resamples: 1000
+    confidence: 0.95
+  # Report metrics separately for each of these groupings.
+  group_by: [language, legal_domain]
+  primary_metric: rmse
+  report_decision_metrics: true   # accuracy / macro-F1 for the 3-way decision
+
+# ---------------------------------------------------------------------------
+# Experiments (mirrors Section C of the project brief).
+# ---------------------------------------------------------------------------
+experiments:
+  experiment1:
+    name: Baselines vs JUDGEBERT
+    models: [tfidf, sbert, judgebert]
+  experiment2:
+    name: Cross-lingual comparison (English vs Hindi)
+    models: [tfidf, sbert, judgebert]
+  experiment3:
+    name: New-domain generalisation
+    # train_domains excludes generalization_domain; test only on it.
+    mode: new_domain           # new_domain | context_ablation
+    train_domains: [contract, sale_of_goods]
+  experiment4:
+    name: Sanity checks
+    n_unrelated_pairs: 200
+    n_identical_pairs: 200
+    n_modal_swap_pairs: 50
+    seed: 42
+  experiment5:
+    name: Qualitative error analysis
+    n_examples: 20             # brief requires >= 15
+    # Prioritise these phenomena when sampling difficult cases.
+    target_phenomena: [obligation, permission, negation, exception, condition,
+                       scope, date, number, entity, omission, hallucination,
+                       contradiction]
+
+# ---------------------------------------------------------------------------
+# Explainability layer.
+# ---------------------------------------------------------------------------
+explainability:
+  # Rule-based cue alignment is the PRIMARY, auditable explanation source.
+  cue_alignment: true
+  # Attention rollout / last-layer attention on the [SEP]-crossing tokens is
+  # SUPPORTING evidence only. The paper must state this explicitly.
+  attention_attribution:
+    enabled: true
+    method: last_layer_cls        # last_layer_cls | rollout
+    top_k_tokens: 12
+    disclaimer: >
+      Attention weights are not a faithful or legally valid explanation of the
+      model's decision. They are reported as weak supporting evidence only,
+      and are never presented as a legal justification.
+
+# ---------------------------------------------------------------------------
+# Reporting.
+# ---------------------------------------------------------------------------
+reporting:
+  figure_dpi: 200
+  figure_format: png
+  table_format: markdown
+  # Placeholder tokens used wherever a value must come from a real run.
+  placeholders:
+    needs_annotation: TODO_HUMAN_ANNOTATION
+    needs_run: TODO_RUN_EXPERIMENT
+    pending: RESULT_PENDING
