@@ -10,6 +10,7 @@ checkpointing, and deterministic settings (temperature=0, JSON format).
 Only the five‑pair pilot is executed – the full dataset is not processed.
 """
 
+import argparse
 import json
 import sys
 import time
@@ -34,7 +35,7 @@ MODEL_NAME = "qwen3:4b"
 # Increased HTTP read timeout (in seconds)
 HTTP_TIMEOUT = 180
 # Maximum number of tokens we allow Ollama to emit – conservative
-MAX_TOKENS = 200
+MAX_TOKENS = 512
 # Temperature set to 0 for reproducibility
 TEMPERATURE = 0
 
@@ -80,47 +81,26 @@ def select_five_pairs(df: pd.DataFrame) -> pd.DataFrame:
         return lang_filtered.head(5)
     return df.head(5)
 
-
 def build_prompt(row: pd.Series) -> str:
-    """Construct a prompt that asks Ollama to return exactly the JSON schema:
-    {
-      "score": <int 1-10>,
-      "error_type": <one of ALLOWED_ERRORS>,
-      "explanation": <non-empty string>,
-      "confidence": <float 0-1>
-    }
-    The model must output **only** this JSON object, no additional text.
-    """
-    prompt = (
-        f"You are an expert legal analyst. Given the original statutory sentence\n"
-        f"and its simplified rewrite, evaluate how well the legal meaning is\n"
-        f"preserved. Return a JSON object with these keys:\n"
-        f"- score (int 1-10)\n"
-        f"- error_type (one of {', '.join(ALLOWED_ERRORS)})\n"
-        f"- explanation (non-empty description)\n"
-        f"- confidence (float 0-1)\n"
-        f"\nOriginal: {row['original_text']}\n"
+    """Ask for a complete, schema-compliant legal meaning annotation."""
+    return (
+        "You are an expert legal analyst evaluating preservation of legal meaning.\n"
+        "Compare the original statutory sentence with its simplified rewrite.\n\n"
+        "Return exactly one JSON object with these four keys:\n"
+        '{"score": 5, "error_type": "None", '
+        '"explanation": "Explanation here", "confidence": 0.8}\n\n'
+        "Rules:\n"
+        "- score must be an integer from 1 to 10.\n"
+        f"- error_type MUST be exactly one of: {', '.join(ALLOWED_ERRORS)}.\n"
+        '- Use "None" when no meaningful legal error is present.\n'
+        "- Never omit error_type, even when the score is high.\n"
+        "- explanation must be a non-empty string.\n"
+        "- confidence must be a number between 0 and 1.\n"
+        "- Do not use null or an empty string for any field.\n"
+        "- Output JSON only, without Markdown fences.\n\n"
+        f"Original: {row['original_text']}\n"
         f"Simplified: {row['simplified_text']}\n"
-        f"Only output the JSON object, no additional text."
     )
-    return prompt
-    """Construct a concise prompt that asks Ollama for a JSON object.
-    The ``format: \"json\"`` option will be sent in the API payload, so the
-    model is instructed to output **only** JSON without extra reasoning.
-    """
-    prompt = (
-        f"You are an expert legal analyst. Given the original statutory sentence\n"
-        f"and its simplified rewrite, evaluate how well the legal meaning is\n"
-        f"preserved. Return a JSON object with these keys:\n"
-        f"- ai_lmp_score (int 1‑10)\n"
-        f"- ai_error_type (one of {', '.join(ALLOWED_ERRORS)})\n"
-        f"- ai_explanation (brief description of the main defect)\n"
-        f"- ai_confidence (float 0‑1)\n"
-        f"- model_name (the model you used)\n"
-        f"\nOriginal: {row['original_text']}\nSimplified: {row['simplified_text']}\n\nOnly output the JSON object, no additional text."
-    )
-    return prompt
-
 
 def call_ollama(prompt: str) -> str:
     """Call the Ollama generate endpoint with JSON‑only output.
@@ -176,39 +156,6 @@ def call_ollama(prompt: str) -> str:
     else:
         raise ValueError("Inner JSON does not contain expected score fields")
     return json.dumps(mapped)
-    """Call the Ollama generate endpoint with JSON‑only output.
-    Parameters are set to disable any internal "thinking" mode:
-    * ``temperature`` = 0 (deterministic)
-    * ``format`` = \"json\"
-    * ``max_new_tokens`` limits output length.
-    """
-    payload = {
-        "model": MODEL_NAME,
-        "prompt": prompt,
-        "stream": False,
-        "options": {"temperature": TEMPERATURE, "num_predict": MAX_TOKENS},
-        "format": "json",
-    }
-    response = requests.post(OLLAMA_URL, json=payload, timeout=HTTP_TIMEOUT)
-    response.raise_for_status()
-    data = response.json()
-    # Extract nested JSON string from outer response
-    outer = data.get("response")
-    if outer is None:
-        raise ValueError("Ollama response missing 'response' field")
-    try:
-        inner = json.loads(outer)
-    except json.JSONDecodeError as exc:
-        raise ValueError(f"Invalid inner JSON from Ollama: {exc}") from exc
-    # Map inner fields to expected schema
-    mapped = {
-        "ai_lmp_score": inner.get("score"),
-        "ai_error_type": inner.get("error_type"),
-        "ai_explanation": inner.get("explanation"),
-        "ai_confidence": inner.get("confidence"),
-        "model_name": data.get("model", MODEL_NAME),
-    }
-    return json.dumps(mapped)
 
 
 
@@ -228,6 +175,9 @@ def parse_and_validate(json_str: str) -> Dict:
     err = result["ai_error_type"]
     if err not in ALLOWED_ERRORS:
         raise ValueError(f"ai_error_type '{err}' not allowed")
+    explanation = result["ai_explanation"]
+    if not isinstance(explanation, str) or not explanation.strip():
+        raise ValueError("ai_explanation must be a non-empty string")
     conf = result["ai_confidence"]
     if not isinstance(conf, (float, int)) or not (0.0 <= float(conf) <= 1.0):
         raise ValueError(f"ai_confidence must be between 0 and 1, got {conf}")
@@ -262,11 +212,24 @@ def write_result(row: pd.Series, prediction: Dict) -> None:
     new_df.to_csv(OUTPUT_CSV, index=False, columns=cols)
 
 def record_failure(row: pd.Series) -> None:
-    """Write a failure record (empty fields) using the same upsert logic.
-    Guarantees at most one failure entry per pair_id.
+    """Write a failure record (empty fields) only if no valid annotation already exists.
+
+    Safety contract:
+    - If a fully valid annotation already exists for this pair_id, this function
+      logs a warning and returns without modifying the CSV.
+    - A failure record is written only when no valid annotation exists.
+    - Guarantees at most one failure entry per pair_id.
     """
+    pair_id = row["pair_id"]
+    # --- Safety guard: never overwrite a valid annotation ---
+    if is_successful_checkpoint(row):
+        print(
+            f"[guard] record_failure refused to overwrite valid annotation for {pair_id}",
+            file=sys.stderr,
+        )
+        return
     failure = {
-        "pair_id": row["pair_id"],
+        "pair_id": pair_id,
         "language": row["language"],
         "legal_domain": row["legal_domain"],
         "ai_lmp_score": None,
@@ -279,7 +242,7 @@ def record_failure(row: pd.Series) -> None:
             "ai_explanation", "ai_confidence", "model_name"]
     if OUTPUT_CSV.exists():
         existing = pd.read_csv(OUTPUT_CSV)
-        existing = existing[existing["pair_id"] != failure["pair_id"]]
+        existing = existing[existing["pair_id"] != pair_id]
         new_df = pd.concat([existing, pd.DataFrame([failure])], ignore_index=True)
     else:
         new_df = pd.DataFrame([failure])
@@ -313,16 +276,23 @@ def is_successful_checkpoint(row) -> bool:
     if match.empty:
         return False
     rec = match.iloc[0]
-    # Validate score
+
+    # Validate score: accept only integer values from 1 through 10.
     try:
         score_val = rec["ai_lmp_score"]
         if isinstance(score_val, str):
+            score_val = score_val.strip()
+            if not score_val:
+                return False
             score_val = float(score_val)
-        score = int(score_val)
-    except Exception:
+
+        score = float(score_val)
+    except (TypeError, ValueError, OverflowError):
         return False
-    if not (1 <= score <= 10):
+
+    if not score.is_integer() or not (1 <= score <= 10):
         return False
+
     # Validate error_type
     if rec["ai_error_type"] not in ALLOWED_ERRORS:
         return False
@@ -344,7 +314,7 @@ def is_successful_checkpoint(row) -> bool:
         return False
     return True
 
-    
+
 
 
 
@@ -390,17 +360,122 @@ def process_pair(row: pd.Series) -> None:
     print(f"[failed] {pair_id} recorded with empty fields", file=sys.stderr)
 
 
+def check_ollama_preflight() -> bool:
+    """Perform a minimal connectivity check against the Ollama server.
+
+    Sends a trivial JSON request and verifies that the response field is
+    non-empty.  Returns True if Ollama is healthy, False otherwise.
+    Errors are printed to stderr; no exception is raised.
+    """
+    test_payload = {
+        "model": MODEL_NAME,
+        "prompt": 'Return JSON: {"ok": true}',
+        "stream": False,
+        "format": "json",
+        "think": False,
+        "options": {"temperature": 0, "num_predict": 32},
+    }
+    try:
+        resp = requests.post(OLLAMA_URL, json=test_payload, timeout=15)
+        resp.raise_for_status()
+        data = resp.json()
+        response_field = data.get("response", "")
+        if not isinstance(response_field, str) or response_field.strip() == "":
+            print(
+                f"[preflight] Ollama responded but 'response' field is empty. "
+                f"Keys: {list(data.keys())}. "
+                f"Thinking present: {'thinking' in data}.",
+                file=sys.stderr,
+            )
+            return False
+        print(f"[preflight] Ollama OK. Response sample: {response_field[:80]!r}")
+        return True
+    except requests.ConnectionError as exc:
+        print(f"[preflight] Cannot connect to Ollama at {OLLAMA_URL}: {exc}", file=sys.stderr)
+        return False
+    except requests.Timeout:
+        print("[preflight] Ollama connection timed out (15 s).", file=sys.stderr)
+        return False
+    except Exception as exc:  # pylint: disable=broad-except
+        print(f"[preflight] Ollama preflight failed unexpectedly: {exc}", file=sys.stderr)
+        return False
+
+
+def select_pending_batch(df: pd.DataFrame, batch_size: int) -> pd.DataFrame:
+    """Select up to batch_size rows that lack a valid annotation checkpoint."""
+    pending_rows = []
+
+    for _, row in df.iterrows():
+        if not should_skip(row):
+            pending_rows.append(row)
+
+        if len(pending_rows) >= batch_size:
+            break
+
+    return pd.DataFrame(pending_rows, columns=df.columns)
+
+
 def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="Generate provisional AI LMP annotations with Ollama."
+    )
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument(
+        "--all",
+        action="store_true",
+        help="Process every source pair, skipping successful checkpoints.",
+    )
+    mode.add_argument(
+        "--batch-size",
+        type=int,
+        help="Process the next N pairs not yet present in the output CSV.",
+    )
+    args, _ = parser.parse_known_args()
+
+    if args.batch_size is not None and args.batch_size < 1:
+        parser.error("--batch-size must be at least 1")
+
     df = load_pairs()
-    pilot_df = select_five_pairs(df)
-    pending = [row for _, row in pilot_df.iterrows() if not should_skip(row)]
+
+    if args.all:
+        candidate_df = df
+        label = "full dataset"
+
+
+    elif args.batch_size is not None:
+        candidate_df = select_pending_batch(df, args.batch_size)
+        label = "pending-pair batch"
+
+    else:
+        candidate_df = select_five_pairs(df)
+        label = "pilot"
+
+    pending = [
+        row for _, row in candidate_df.iterrows()
+        if not should_skip(row)
+    ]
+
     if not pending:
-        print("Pilot already complete – all selected pairs have successful predictions.")
+        if label == "pilot":
+            print("Pilot already complete; all selected pairs have valid checkpoints.")
+        else:
+            print(f"No pending pairs for {label}; nothing to process.")
         return
-    print(f"Running pilot on {len(pending)} pairs...")
+
+    # --- Pre-flight check: confirm Ollama is reachable before the annotation loop ---
+    if not check_ollama_preflight():
+        print(
+            "[error] Ollama preflight failed. Start Ollama with 'ollama serve' and verify "
+            f"that '{MODEL_NAME}' is available via 'ollama list' before retrying.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    print(f"Running {label} on {len(pending)} pairs...")
     for row in pending:
         process_pair(row)
-    print(f"Pilot completed. Results stored in {OUTPUT_CSV}")
+
+    print(f"Completed {label}. Results stored in {OUTPUT_CSV}")
 
 
 if __name__ == "__main__":

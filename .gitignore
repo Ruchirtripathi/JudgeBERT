@@ -77,3 +77,8 @@ data/processed/ai_annotations_pilot_backup.csv
 tmp_pytest/
 tmp_pytest_path/
 tmp_diag.csv
+
+# Local annotation backups and repair artifacts
+data/processed/ai_annotations_backup*.csv
+data/processed/ai_annotations_before_retry.csv
+data/processed/ai_annotations_before_repair.csv

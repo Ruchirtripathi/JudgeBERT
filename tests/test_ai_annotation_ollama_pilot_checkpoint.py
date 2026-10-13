@@ -118,6 +118,7 @@ def test_pilot_pending_due_to_empty_fields(monkeypatch, capsys, tmp_path):
     def fake_process(row):
         called.append(row["pair_id"])
     monkeypatch.setattr(pilot, "process_pair", fake_process)
+    monkeypatch.setattr(pilot, "check_ollama_preflight", lambda: True)
 
     pilot.main()
     captured = capsys.readouterr()
